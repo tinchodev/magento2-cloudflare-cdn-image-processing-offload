@@ -1,0 +1,125 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="ex6" translate="label" sortOrder="333">
+            <label>Ex6</label>
+        </tab>
+        <section id="cloudflare" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+            <label>CloudFlare</label>
+            <tab>ex6</tab>
+            <resource>Ex6_CloudFlare::ex6_cloudflare</resource>
+            <group id="general" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                <label>General</label>
+                <field id="api_key" type="obscure" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1"
+                       translate="label">
+                    <label>API Key</label>
+                    <comment>Cloudflare API KEY</comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+            </group>
+            <group id="image_optimization" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1"
+                   translate="label">
+                <label>Image Optimization</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="11" showInDefault="1"
+                       showInWebsite="0" showInStore="0">
+                    <label>Enable Image Optimization</label>
+                    <comment>Enable/Disable image optimization</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="cms_enabled" translate="label comment" type="select" sortOrder="12" showInDefault="1"
+                       showInWebsite="0" showInStore="0">
+                    <label>CMS image optimization</label>
+                    <comment>Use performance settings for CMS content images</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="compression" translate="label" type="select" sortOrder="13" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label><![CDATA[Compression]]></label>
+                    <source_model>Ex6\CloudFlare\Model\Config\Source\Compression</source_model>
+                    <comment><![CDATA[See https://developers.cloudflare.com/images/image-resizing/url-format/#compressionfast]]></comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="format" translate="label" type="select" sortOrder="14" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label><![CDATA[Format]]></label>
+                    <source_model>Ex6\CloudFlare\Model\Config\Source\Format</source_model>
+                    <comment><![CDATA[See https://developers.cloudflare.com/images/image-resizing/url-format/#format]]></comment>
+                    <depends>
+                        <field id="compression">none</field>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="fit" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label><![CDATA[Fitment]]></label>
+                    <source_model>Ex6\CloudFlare\Model\Config\Source\Fit</source_model>
+                    <comment><![CDATA[See https://developers.cloudflare.com/images/image-resizing/url-format/#fit]]></comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="quality" translate="label" type="select" sortOrder="16" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label><![CDATA[Quality]]></label>
+                    <source_model>Ex6\CloudFlare\Model\Config\Source\Quality</source_model>
+                    <comment><![CDATA[See https://developers.cloudflare.com/images/image-resizing/url-format/#quality]]></comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="mobile" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1"
+                   translate="label">
+                <label>Mobile Images</label>
+                <field id="pdp" translate="label comment" type="select" sortOrder="10" showInDefault="1"
+                       showInWebsite="0" showInStore="0">
+                    <label>Enable for PDP</label>
+                    <comment>Enable a set of mobile images for product details page</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="pdp_widths" translate="label" type="text" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Size list</label>
+                    <comment>List of widths comma separated ex: 320,640,960,1280,2560</comment>
+                    <depends>
+                        <field id="pdp">1</field>
+                    </depends>
+                </field>
+                <field id="plp" translate="label comment" type="select" sortOrder="30" showInDefault="1"
+                       showInWebsite="0" showInStore="0">
+                    <label>Enable for PLP</label>
+                    <comment>Enable a set of mobile images for product listing pages</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="plp_widths" translate="label" type="text" sortOrder="40" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Size list</label>
+                    <comment>List of widths comma separated ex: 320,640,960,1280,2560</comment>
+                    <depends>
+                        <field id="plp">1</field>
+                    </depends>
+                </field>
+<!--                <field id="cms" translate="label comment" type="select" sortOrder="50" showInDefault="1"-->
+<!--                       showInWebsite="0" showInStore="0">-->
+<!--                    <label>Enable for CMS</label>-->
+<!--                    <comment>Enable a set of mobile images for content</comment>-->
+<!--                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
+<!--                </field>-->
+<!--                <field id="cms_widths" translate="label" type="text" sortOrder="60" showInDefault="1"-->
+<!--                       showInWebsite="1" showInStore="1">-->
+<!--                    <label>Size list</label>-->
+<!--                    <comment>List of supported widths comma separated ex: 320,640,960,1280,2560</comment>-->
+<!--                    <depends>-->
+<!--                        <field id="cms">1</field>-->
+<!--                    </depends>-->
+<!--                </field>-->
+            </group>
+        </section>
+    </system>
+</config>
