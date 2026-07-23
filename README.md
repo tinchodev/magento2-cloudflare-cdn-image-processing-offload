@@ -66,51 +66,54 @@ All settings support default/website/store view scope, except the enable/disable
 ## Directory structure
 
 ```
-Ex6
-└── CloudFlare
-    ├── Block
-    │   └── Product
-    │       ├── ImageFactory.php
-    │       └── View
-    │           └── Gallery.php
-    ├── Helper
-    │   └── Image.php
-    ├── Model
-    │   ├── Config.php
-    │   ├── Config
-    │   │   └── Source
-    │   │       ├── Compression.php
-    │   │       ├── Fit.php
-    │   │       ├── Format.php
-    │   │       └── Quality.php
-    │   ├── Product
-    │   │   └── Image.php
-    │   └── View
-    │       └── Asset
-    │           └── Image.php
-    ├── Plugin
-    │   └── Template
-    │       └── FilterPlugin.php
-    ├── etc
-    │   ├── acl.xml
-    │   ├── adminhtml
-    │   │   └── system.xml
-    │   ├── config.xml
-    │   ├── frontend
-    │   │   └── di.xml
-    │   └── module.xml
-    ├── view
-    │   └── frontend
-    │       ├── layout
-    │       │   └── catalog_product_view.xml
-    │       └── templates
-    │           └── catalog
-    │               └── product
-    │                   ├── image_with_borders.phtml
-    │                   └── view
-    │                       └── gallery.phtml
-    ├── composer.json
-    ├── LICENSE
-    ├── README.md
-    └── registration.php
+.
+├── Ex6
+│   └── CloudFlare
+│       ├── Block
+│       │   └── Product
+│       │       ├── ImageFactory.php
+│       │       └── View
+│       │           └── Gallery.php
+│       ├── Helper
+│       │   └── Image.php
+│       ├── Model
+│       │   ├── Config.php
+│       │   ├── Config
+│       │   │   └── Source
+│       │   │       ├── Compression.php
+│       │   │       ├── Fit.php
+│       │   │       ├── Format.php
+│       │   │       └── Quality.php
+│       │   ├── Product
+│       │   │   └── Image.php
+│       │   └── View
+│       │       └── Asset
+│       │           └── Image.php
+│       ├── Plugin
+│       │   └── Template
+│       │       └── FilterPlugin.php
+│       ├── etc
+│       │   ├── acl.xml
+│       │   ├── adminhtml
+│       │   │   └── system.xml
+│       │   ├── config.xml
+│       │   ├── frontend
+│       │   │   └── di.xml
+│       │   └── module.xml
+│       ├── view
+│       │   └── frontend
+│       │       ├── layout
+│       │       │   └── catalog_product_view.xml
+│       │       └── templates
+│       │           └── catalog
+│       │               └── product
+│       │                   ├── image_with_borders.phtml
+│       │                   └── view
+│       │                       └── gallery.phtml
+│       ├── composer.json
+│       └── registration.php
+├── LICENSE
+└── README.md
 ```
+
+When installing, only the `Ex6/CloudFlare` directory is copied into your Magento instance, at `app/code/Ex6/CloudFlare`.
