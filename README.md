@@ -62,3 +62,55 @@ All settings support default/website/store view scope, except the enable/disable
 
 - Compression, Format, Fitment, and Quality are scoped per website/store view, so different stores can apply different optimization settings.
 - Setting a field to `None` / `Original` omits that parameter from the Cloudflare resizing URL, letting Cloudflare use its own defaults.
+
+## Directory structure
+
+```
+Ex6
+└── CloudFlare
+    ├── Block
+    │   └── Product
+    │       ├── ImageFactory.php
+    │       └── View
+    │           └── Gallery.php
+    ├── Helper
+    │   └── Image.php
+    ├── Model
+    │   ├── Config.php
+    │   ├── Config
+    │   │   └── Source
+    │   │       ├── Compression.php
+    │   │       ├── Fit.php
+    │   │       ├── Format.php
+    │   │       └── Quality.php
+    │   ├── Product
+    │   │   └── Image.php
+    │   └── View
+    │       └── Asset
+    │           └── Image.php
+    ├── Plugin
+    │   └── Template
+    │       └── FilterPlugin.php
+    ├── etc
+    │   ├── acl.xml
+    │   ├── adminhtml
+    │   │   └── system.xml
+    │   ├── config.xml
+    │   ├── frontend
+    │   │   └── di.xml
+    │   └── module.xml
+    ├── view
+    │   └── frontend
+    │       ├── layout
+    │       │   └── catalog_product_view.xml
+    │       └── templates
+    │           └── catalog
+    │               └── product
+    │                   ├── image_with_borders.phtml
+    │                   └── view
+    │                       └── gallery.phtml
+    ├── composer.json
+    ├── LICENSE
+    ├── README.md
+    └── registration.php
+```
