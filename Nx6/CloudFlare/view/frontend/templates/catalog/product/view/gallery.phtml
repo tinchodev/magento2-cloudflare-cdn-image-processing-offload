@@ -1,0 +1,81 @@
+<?php
+/**
+ * Product media data template
+ *
+ * @var $block Gallery
+ */
+
+use Nx6\CloudFlare\Block\Product\View\Gallery;
+
+?>
+
+<?php
+$images = $block->getGalleryImages()->getItems();
+$mainImage = current(array_filter($images, function ($img) use ($block) {
+    return $block->isMainImage($img);
+}));
+
+if (!empty($images) && empty($mainImage)) {
+    $mainImage = $block->getGalleryImages()->getFirstItem();
+}
+
+$mainImageSrcSet = $mainImage ? $mainImage->getData('srcset') : [];
+if (!empty($mainImageSrcSet)) {
+    $mainImageSrcSet = implode(',' . PHP_EOL, $mainImageSrcSet);
+}
+$helper = $block->getData('imageHelper');
+$mainImageData = $mainImage ?
+    $mainImage->getData('medium_image_url') :
+    $helper->getDefaultPlaceholderUrl('image');
+
+$productImagesAllJsonData = $block->getAllImagesJsonData();
+?>
+
+<div class="gallery-placeholder _block-content-loading" data-gallery-role="gallery-placeholder">
+    <img
+        alt="main product photo"
+        class="gallery-placeholder__image"
+        src="<?= /* @noEscape */ $mainImageData ?>"
+        <?php if (!empty($mainImageSrcSet)): ?>
+            <?php if ($block->optimizationEnabledForMobile('pdp')): ?>
+                srcset="<?= /* @noEscape */ $mainImageSrcSet ?>"
+            <?php endif; ?>
+        <?php endif; ?>
+    />
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "[data-gallery-role=gallery-placeholder]": {
+            "mage/gallery/gallery": {
+                "mixins":["magnifier/magnify"],
+                "magnifierOpts": <?= /* @noEscape */ $block->getMagnifier() ?>,
+                "data": <?= /* @noEscape */ $block->getGalleryImagesJson() ?>,
+                "options": <?= /* @noEscape */ $block->getGalleryOptions()->getOptionsJson() ?>,
+                "fullscreen": <?= /* @noEscape */ $block->getGalleryOptions()->getFSOptionsJson() ?>,
+                "breakpoints": <?= /* @noEscape */ $block->getBreakpoints() ?>
+    }
+}
+}
+</script>
+<?php if ($block->optimizationEnabledForMobile('pdp')): ?>
+    <script>
+        require(['jquery', 'mage/gallery/gallery'], function($, gallery){
+            $('[data-gallery-role=gallery-placeholder]').on('gallery:loaded', function () {
+                $(this).on('fotorama:load', function(){
+                    let galleryImagesData = <?= /* @noEscape */ $productImagesAllJsonData ?>;
+                    document.querySelectorAll('.fotorama__img').forEach(image => {
+                        let imgSrc = image.getAttribute('src');
+                        Object.keys(galleryImagesData).forEach(key => {
+                            if(imgSrc === galleryImagesData[key].img){
+                                if(galleryImagesData[key].srcset && galleryImagesData[key].srcset.length){
+                                    image.setAttribute('srcset',galleryImagesData[key].srcset.join(', '));
+                                }
+                            }
+                        });
+                    });
+                });
+            });
+        });
+    </script>
+<?php endif; ?>

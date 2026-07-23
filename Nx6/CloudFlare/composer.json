@@ -1,0 +1,33 @@
+{
+    "name": "nx6/CloudFlare",
+    "description": "",
+    "require": {
+        "php": "~5.5.0|~5.6.0|~7.0.0",
+
+        "magento/magento-composer-installer": "*"
+    },
+    "suggest": {
+
+    },
+    "type": "magento2-module",
+    "version": "0.1.0",
+    "license": [
+        "MIT"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Nx6\\CloudFlare\\": ""
+        }
+    },
+    "extra": {
+        "map": [
+            [
+                "*",
+                "Nx6/CloudFlare"
+            ]
+        ]
+    }
+}

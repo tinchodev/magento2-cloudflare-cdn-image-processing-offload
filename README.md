@@ -1,4 +1,4 @@
-# Ex6_CloudFlare
+# Nx6_CloudFlare
 
 Offloads Magento 2 product and CMS image processing to [Cloudflare Image Resizing](https://developers.cloudflare.com/images/image-resizing/), rewriting image URLs so Cloudflare resizes, compresses, and reformats them on the fly instead of Magento's PHP image processor. It also adds responsive mobile `srcset`s to the product gallery for the PDP and PLP.
 
@@ -17,18 +17,18 @@ Offloads Magento 2 product and CMS image processing to [Cloudflare Image Resizin
 ## Installation
 
 ```bash
-composer require ex6/cloudflare
-bin/magento module:enable Ex6_CloudFlare
+composer require nx6/cloudflare
+bin/magento module:enable Nx6_CloudFlare
 bin/magento setup:upgrade
 bin/magento setup:di:compile
 bin/magento cache:flush
 ```
 
-Or, if installing manually, place the module at `app/code/Ex6/CloudFlare` and run the same `setup:upgrade` / `setup:di:compile` / `cache:flush` sequence.
+Or, if installing manually, place the module at `app/code/Nx6/CloudFlare` and run the same `setup:upgrade` / `setup:di:compile` / `cache:flush` sequence.
 
 ## Configuration
 
-Go to **Stores → Configuration → Ex6 → CloudFlare**.
+Go to **Stores → Configuration → Nx6 → CloudFlare**.
 
 ### General
 
@@ -67,7 +67,7 @@ All settings support default/website/store view scope, except the enable/disable
 
 ```
 .
-├── Ex6
+├── Nx6
 │   └── CloudFlare
 │       ├── Block
 │       │   └── Product
@@ -116,4 +116,4 @@ All settings support default/website/store view scope, except the enable/disable
 └── README.md
 ```
 
-When installing, only the `Ex6/CloudFlare` directory is copied into your Magento instance, at `app/code/Ex6/CloudFlare`.
+When installing, only the `Nx6/CloudFlare` directory is copied into your Magento instance, at `app/code/Nx6/CloudFlare`.
